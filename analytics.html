@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Influencers</title>
+    <title>Analytics Dashboard</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -74,12 +74,6 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        .card img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
         .card-content {
             padding: 15px;
         }
@@ -91,116 +85,111 @@
             text-align: center;
         }
 
-        .stats {
-            text-align: center;
-            font-size: 16px;
-            color: #555;
-            margin: 10px 0;
+        .chart {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
         }
 
-        .card a {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 15px;
-            width: 80%;
-            text-align: center;
-            background: #ff5a5f;
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-
-        .card a:hover {
-            background: #ff3c4d;
-        }
-
-        .tooltip {
-            font-size: 14px;
-            background: #333;
-            color: white;
-            border-radius: 5px;
-            padding: 5px;
-        }
-
-        .search-bar {
-            display: flex;
-            justify-content: center;
-            margin: 20px auto;
-        }
-
-        .search-bar input {
-            width: 50%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .search-bar button {
-            padding: 10px 15px;
-            margin-left: 10px;
-            background: #ff5a5f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .search-bar button:hover {
-            background: #ff3c4d;
+        .chart canvas {
+            max-width: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="header">Find Influencers</div>
+    <div class="header">Analytics Dashboard</div>
 
     <div class="nav">
         <a href="index.html">Home</a>
-        <a href="analytics.html">Analytics</a>
-        <a href="brand-campaigns.html">Campaigns</a>
+        <a href="campaigns.html">Campaigns</a>
+        <a href="find-influencers.html">Find Influencers</a>
     </div>
 
-    <div class="section-title">Search and Discover</div>
-
-    <div class="search-bar">
-        <input type="text" placeholder="Search influencers by name, niche, or location...">
-        <button>Search</button>
-    </div>
+    <div class="section-title">Performance Metrics</div>
 
     <div class="dashboard">
-        <!-- Influencer 1 -->
-        <div class="card">
-            <img src="https://via.placeholder.com/400x200" alt="Influencer 1">
-            <div class="card-content">
-                <h3>Influencer A</h3>
-                <p class="stats">Followers: 200K | Engagement: 8.5%</p>
-                <a href="#">View Profile</a>
-            </div>
+        <div class="chart">
+            <h3>Audience Reach</h3>
+            <canvas id="audienceChart"></canvas>
         </div>
-
-        <!-- Influencer 2 -->
-        <div class="card">
-            <img src="https://via.placeholder.com/400x200" alt="Influencer 2">
-            <div class="card-content">
-                <h3>Influencer B</h3>
-                <p class="stats">Followers: 150K | Engagement: 7.2%</p>
-                <a href="#">View Profile</a>
-            </div>
+        <div class="chart">
+            <h3>Engagement Rate</h3>
+            <canvas id="engagementChart"></canvas>
         </div>
-
-        <!-- Influencer 3 -->
-        <div class="card">
-            <img src="https://via.placeholder.com/400x200" alt="Influencer 3">
-            <div class="card-content">
-                <h3>Influencer C</h3>
-                <p class="stats">Followers: 300K | Engagement: 9%</p>
-                <a href="#">View Profile</a>
-            </div>
+        <div class="chart">
+            <h3>Conversion Rate</h3>
+            <canvas id="conversionChart"></canvas>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const audienceCtx = document.getElementById('audienceChart').getContext('2d');
+        new Chart(audienceCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Audience Reach (in thousands)',
+                    data: [200, 250, 300, 350, 400],
+                    borderColor: '#ff5a5f',
+                    backgroundColor: 'rgba(255, 90, 95, 0.2)',
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                },
+            },
+        });
+
+        const engagementCtx = document.getElementById('engagementChart').getContext('2d');
+        new Chart(engagementCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Engagement Rate (%)',
+                    data: [5, 6, 7, 8, 9],
+                    backgroundColor: '#ff7e7e',
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                },
+            },
+        });
+
+        const conversionCtx = document.getElementById('conversionChart').getContext('2d');
+        new Chart(conversionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Direct', 'Social Media', 'Referral'],
+                datasets: [{
+                    data: [50, 30, 20],
+                    backgroundColor: ['#ff5a5f', '#ff7e7e', '#ff3c4d'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                    },
+                },
+            },
+        });
+    </script>
 </body>
 </html>

@@ -48,167 +48,99 @@
             font-weight: bold;
         }
 
-        .content {
-            text-align: center;
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             padding: 20px;
         }
 
-        .content p {
-            color: #555;
-            font-size: 18px;
-            margin-top: 10px;
-        }
-
-        .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: #ff5a5f;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .button:hover {
-            background: #ff3c4d;
-        }
-
-        .results {
-            margin-top: 20px;
-            text-align: left;
-            padding: 20px;
-            background: #fff;
+        .card {
+            background: white;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s;
         }
 
-        .results h3 {
-            margin-bottom: 10px;
+        .card:hover {
+            transform: scale(1.05);
         }
 
-        .results p {
-            margin: 5px 0;
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin-top: 10px;
+            color: #ff5a5f;
+            font-size: 20px;
+        }
+
+        .progress-bar {
+            background: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 10px;
+            margin: 10px 0;
+        }
+
+        .progress-bar div {
+            height: 100%;
+            background: #ff5a5f;
+            width: 70%; /* Dynamic width */
+        }
+
+        .stats {
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
 <body>
     <div class="header">Campaigns</div>
-    
+
     <div class="nav">
         <a href="index.html">Home</a>
-        <a href="earnings.html">Earnings</a>
-        <a href="explore.html">Explore</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="influencers.html">Find Influencers</a>
     </div>
 
-    <div class="section-title">Campaign Management</div>
-    <div class="content">
-        <p>View and manage all your active campaigns in one place.</p>
-        <p>Access details, progress, and results of each campaign seamlessly.</p>
+    <div class="section-title">Active Campaigns</div>
 
-        <a class="button" id="run-matching">Run Matching Algorithm</a>
+    <div class="dashboard">
+        <!-- Sample Campaign 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="Brand Logo">
+            <h3>Brand X Campaign</h3>
+            <div class="progress-bar">
+                <div style="width: 80%;"></div>
+            </div>
+            <p class="stats">80% completed</p>
+        </div>
 
-        <div id="matching-results" class="results" style="display: none;">
-            <h3>Matching Results</h3>
-            <div id="results-container"></div>
+        <!-- Sample Campaign 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="Brand Logo">
+            <h3>Brand Y Campaign</h3>
+            <div class="progress-bar">
+                <div style="width: 50%;"></div>
+            </div>
+            <p class="stats">50% completed</p>
+        </div>
+
+        <!-- Sample Campaign 3 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="Brand Logo">
+            <h3>Brand Z Campaign</h3>
+            <div class="progress-bar">
+                <div style="width: 30%;"></div>
+            </div>
+            <p class="stats">30% completed</p>
         </div>
     </div>
-
-    <script>
-        const influencers = [
-            {
-                id: 1,
-                name: "Influencer A",
-                niche: "Fashion",
-                engagementRate: 8.5,
-                followers: 20000,
-                location: "USA"
-            },
-            {
-                id: 2,
-                name: "Influencer B",
-                niche: "Tech",
-                engagementRate: 6.0,
-                followers: 15000,
-                location: "Canada"
-            },
-            {
-                id: 3,
-                name: "Influencer C",
-                niche: "Food",
-                engagementRate: 9.0,
-                followers: 50000,
-                location: "USA"
-            }
-        ];
-
-        const brands = [
-            {
-                id: 1,
-                name: "Brand X",
-                targetNiche: "Fashion",
-                minFollowers: 10000,
-                targetLocation: "USA"
-            },
-            {
-                id: 2,
-                name: "Brand Y",
-                targetNiche: "Tech",
-                minFollowers: 20000,
-                targetLocation: "Canada"
-            }
-        ];
-
-        function matchInfluencersToBrands(influencers, brands) {
-            return brands.map((brand) => {
-                const matches = influencers
-                    .filter((influencer) => 
-                        influencer.niche === brand.targetNiche &&
-                        influencer.followers >= brand.minFollowers &&
-                        influencer.location === brand.targetLocation
-                    )
-                    .map((influencer) => ({
-                        ...influencer,
-                        score: influencer.engagementRate
-                    }));
-
-                return {
-                    brand: brand.name,
-                    matches: matches.sort((a, b) => b.score - a.score)
-                };
-            });
-        }
-
-        document.getElementById("run-matching").addEventListener("click", () => {
-            const results = matchInfluencersToBrands(influencers, brands);
-
-            const resultsContainer = document.getElementById("results-container");
-            resultsContainer.innerHTML = "";
-
-            results.forEach((result) => {
-                const brandHeader = document.createElement("h4");
-                brandHeader.textContent = `Brand: ${result.brand}`;
-                resultsContainer.appendChild(brandHeader);
-
-                if (result.matches.length > 0) {
-                    result.matches.forEach((match) => {
-                        const matchDetails = document.createElement("p");
-                        matchDetails.textContent = `- ${match.name}, Engagement Rate: ${match.engagementRate}%, Followers: ${match.followers}`;
-                        resultsContainer.appendChild(matchDetails);
-                    });
-                } else {
-                    const noMatch = document.createElement("p");
-                    noMatch.textContent = "No matches found.";
-                    resultsContainer.appendChild(noMatch);
-                }
-            });
-
-            document.getElementById("matching-results").style.display = "block";
-        });
-    </script>
 </body>
 </html>

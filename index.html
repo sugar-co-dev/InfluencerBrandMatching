@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Influencer & Brand Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: #007bff;
+            color: white;
+            font-size: 24px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .card {
+            background: #eaf4fe;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            width: 300px;
+            margin: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card button {
+            margin-top: auto;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background: #0056b3;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .matching-section {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Influencer & Brand Dashboard</div>
+
+    <div class="section-title">Influencer Dashboard</div>
+    <div class="container">
+        <div class="card">
+            <h3>Campaigns</h3>
+            <p>View and manage active campaigns.</p>
+            <button>View Campaigns</button>
+        </div>
+        <div class="card">
+            <h3>Earnings</h3>
+            <p>Track your earnings and payouts.</p>
+            <button>View Earnings</button>
+        </div>
+        <div class="card">
+            <h3>Explore Opportunities</h3>
+            <p>Discover new campaigns.</p>
+            <button>Explore</button>
+        </div>
+    </div>
+
+    <div class="section-title">Brand Dashboard</div>
+    <div class="container">
+        <div class="card">
+            <h3>Manage Campaigns</h3>
+            <p>Create and monitor campaigns.</p>
+            <button>Manage Campaigns</button>
+        </div>
+        <div class="card">
+            <h3>Analytics</h3>
+            <p>View campaign performance.</p>
+            <button>View Analytics</button>
+        </div>
+        <div class="card">
+            <h3>Find Influencers</h3>
+            <p>Search for top influencers.</p>
+            <button>Find Influencers</button>
+        </div>
+    </div>
+
+    <div class="section-title">Matching Algorithm</div>
+    <div class="matching-section">
+        <p>Dynamic Matching Algorithm to pair influencers with brands based on engagement, audience, and performance metrics.</p>
+        <button>Run Matching Algorithm</button>
+    </div>
+
+    <script>
+        // Example JavaScript to make the buttons functional
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                alert(`${button.innerText} feature coming soon!`);
+            });
+        });
+    </script>
+</body>
+</html>

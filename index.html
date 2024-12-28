@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fcfbf7;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: #ff5a5f;
+            color: white;
+            font-size: 26px;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background: #ff5a5f;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #ff7e7e;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .nav a:hover {
+            background: #ff3c4d;
+        }
+        .section-title {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 30px;
+            color: #333;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            width: 320px;
+            margin: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h3 {
+            margin-bottom: 10px;
+            color: #ff5a5f;
+        }
+        .card p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        .card a {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #ff5a5f;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .card a:hover {
+            background: #ff3c4d;
+        }
+        .section {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="nav">
+        <a href="index.html">Home</a>
+    </div>
+    <div class="section">
+        <div class="section-title">For Influencers</div>
+        <div class="container">
+            <div class="card">
+                <h3>Campaigns</h3>
+                <p>View and manage your active campaigns.</p>
+                <a href="campaigns.html">Go to Campaigns</a>
+            </div>
+            <div class="card">
+                <h3>Earnings</h3>
+                <p>Track your earnings and payouts.</p>
+                <a href="earnings.html">View Earnings</a>
+            </div>
+            <div class="card">
+                <h3>Explore</h3>
+                <p>Discover new opportunities.</p>
+                <a href="explore.html">Explore Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">For Brands</div>
+        <div class="container">
+            <div class="card">
+                <h3>Brand Campaigns</h3>
+                <p>Manage your brand's campaigns.</p>
+                <a href="brand-campaigns.html">Manage Campaigns</a>
+            </div>
+            <div class="card">
+                <h3>Analytics</h3>
+                <p>Analyze campaign performance.</p>
+                <a href="analytics.html">View Analytics</a>
+            </div>
+            <div class="card">
+                <h3>Find Influencers</h3>
+                <p>Search and connect with influencers.</p>
+                <a href="influencers.html">Find Influencers</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Face Campaign</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fcfbf7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: #ff5a5f;
+            color: white;
+            font-size: 26px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background: #ff5a5f;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #ff7e7e;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .nav a:hover {
+            background: #ff3c4d;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .chart {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart h3 {
+            color: #333;
+        }
+
+        .chart canvas {
+            max-width: 100%;
+        }
+
+        .table {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .table h3 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #ff5a5f;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">North Face Campaign</div>
+
+    <div class="nav">
+        <a href="campaigns.html">Back to Campaigns</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="influencers.html">Find Influencers</a>
+    </div>
+
+    <div class="content">
+        <div class="chart">
+            <h3>Campaign Reach</h3>
+            <canvas id="reachChart"></canvas>
+        </div>
+
+        <div class="chart">
+            <h3>Engagement Rate</h3>
+            <canvas id="engagementChart"></canvas>
+        </div>
+
+        <div class="table">
+            <h3>Participating Influencers</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Influencer</th>
+                        <th>Followers</th>
+                        <th>Engagement Rate</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Influencer C</td>
+                        <td>180,000</td>
+                        <td>8.2%</td>
+                        <td>USA</td>
+                    </tr>
+                    <tr>
+                        <td>Influencer D</td>
+                        <td>210,000</td>
+                        <td>7.8%</td>
+                        <td>Canada</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const reachCtx = document.getElementById('reachChart').getContext('2d');
+        const engagementCtx = document.getElementById('engagementChart').getContext('2d');
+
+        new Chart(reachCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Reach (in thousands)',
+                    data: [140, 190, 220, 270],
+                    backgroundColor: '#ff5a5f',
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                },
+            },
+        });
+
+        new Chart(engagementCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Engagement Rate (%)',
+                    data: [6.0, 6.5, 7.0, 7.5],
+                    borderColor: '#ff5a5f',
+                    backgroundColor: 'rgba(255, 90, 95, 0.2)',
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                },
+            },
+        });
+    </script>
+</body>
+</html>

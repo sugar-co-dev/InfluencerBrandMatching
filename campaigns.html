@@ -58,6 +58,42 @@
             font-size: 18px;
             margin-top: 10px;
         }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff5a5f;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #ff3c4d;
+        }
+
+        .results {
+            margin-top: 20px;
+            text-align: left;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .results h3 {
+            margin-bottom: 10px;
+        }
+
+        .results p {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -73,6 +109,106 @@
     <div class="content">
         <p>View and manage all your active campaigns in one place.</p>
         <p>Access details, progress, and results of each campaign seamlessly.</p>
+
+        <a class="button" id="run-matching">Run Matching Algorithm</a>
+
+        <div id="matching-results" class="results" style="display: none;">
+            <h3>Matching Results</h3>
+            <div id="results-container"></div>
+        </div>
     </div>
+
+    <script>
+        const influencers = [
+            {
+                id: 1,
+                name: "Influencer A",
+                niche: "Fashion",
+                engagementRate: 8.5,
+                followers: 20000,
+                location: "USA"
+            },
+            {
+                id: 2,
+                name: "Influencer B",
+                niche: "Tech",
+                engagementRate: 6.0,
+                followers: 15000,
+                location: "Canada"
+            },
+            {
+                id: 3,
+                name: "Influencer C",
+                niche: "Food",
+                engagementRate: 9.0,
+                followers: 50000,
+                location: "USA"
+            }
+        ];
+
+        const brands = [
+            {
+                id: 1,
+                name: "Brand X",
+                targetNiche: "Fashion",
+                minFollowers: 10000,
+                targetLocation: "USA"
+            },
+            {
+                id: 2,
+                name: "Brand Y",
+                targetNiche: "Tech",
+                minFollowers: 20000,
+                targetLocation: "Canada"
+            }
+        ];
+
+        function matchInfluencersToBrands(influencers, brands) {
+            return brands.map((brand) => {
+                const matches = influencers
+                    .filter((influencer) => 
+                        influencer.niche === brand.targetNiche &&
+                        influencer.followers >= brand.minFollowers &&
+                        influencer.location === brand.targetLocation
+                    )
+                    .map((influencer) => ({
+                        ...influencer,
+                        score: influencer.engagementRate
+                    }));
+
+                return {
+                    brand: brand.name,
+                    matches: matches.sort((a, b) => b.score - a.score)
+                };
+            });
+        }
+
+        document.getElementById("run-matching").addEventListener("click", () => {
+            const results = matchInfluencersToBrands(influencers, brands);
+
+            const resultsContainer = document.getElementById("results-container");
+            resultsContainer.innerHTML = "";
+
+            results.forEach((result) => {
+                const brandHeader = document.createElement("h4");
+                brandHeader.textContent = `Brand: ${result.brand}`;
+                resultsContainer.appendChild(brandHeader);
+
+                if (result.matches.length > 0) {
+                    result.matches.forEach((match) => {
+                        const matchDetails = document.createElement("p");
+                        matchDetails.textContent = `- ${match.name}, Engagement Rate: ${match.engagementRate}%, Followers: ${match.followers}`;
+                        resultsContainer.appendChild(matchDetails);
+                    });
+                } else {
+                    const noMatch = document.createElement("p");
+                    noMatch.textContent = "No matches found.";
+                    resultsContainer.appendChild(noMatch);
+                }
+            });
+
+            document.getElementById("matching-results").style.display = "block";
+        });
+    </script>
 </body>
 </html>

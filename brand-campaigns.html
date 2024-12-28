@@ -184,7 +184,22 @@
                 datasets: [{
                     label: 'Engagement (%)',
                     data: [12, 15, 8],
-                    backgroundColor: ['#ff5a5f', '#ff7e7e', '#ff3c4d'],
+                    backgroundColor: [
+                        'rgba(255, 90, 95, 0.8)',
+                        'rgba(255, 126, 126, 0.8)',
+                        'rgba(255, 60, 77, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 90, 95, 1)',
+                        'rgba(255, 126, 126, 1)',
+                        'rgba(255, 60, 77, 1)'
+                    ],
+                    borderWidth: 2,
+                    hoverBackgroundColor: [
+                        'rgba(255, 90, 95, 1)',
+                        'rgba(255, 126, 126, 1)',
+                        'rgba(255, 60, 77, 1)'
+                    ]
                 }]
             },
             options: {
@@ -192,9 +207,42 @@
                 plugins: {
                     legend: {
                         display: true,
-                    },
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 14
+                            },
+                            color: '#333'
+                        }
+                    }
                 },
-            },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 12
+                            },
+                            color: '#555'
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: '#ddd',
+                            lineWidth: 1
+                        },
+                        ticks: {
+                            stepSize: 5,
+                            font: {
+                                size: 12
+                            },
+                            color: '#555'
+                        }
+                    }
+                }
+            }
         });
     </script>
 </body>

@@ -1,35 +1,206 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics</title>
+    <title>Find Influencers</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #fcfbf7;
+            background-color: #fdfdfd;
             margin: 0;
             padding: 0;
         }
+
         .header {
             text-align: center;
             padding: 20px;
             background: #ff5a5f;
             color: white;
-            font-size: 26px;
+            font-size: 28px;
+            font-weight: bold;
         }
-        .content {
-            margin: 30px auto;
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 10%;
+            background: #ff7e7e;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #ff5a5f;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: #ff3c4d;
+        }
+
+        .section-title {
             text-align: center;
+            margin: 40px 0 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 10%;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            color: #ff5a5f;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .stats {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .card a {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 15px;
+            width: 80%;
+            text-align: center;
+            background: #ff5a5f;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .card a:hover {
+            background: #ff3c4d;
+        }
+
+        .tooltip {
+            font-size: 14px;
+            background: #333;
+            color: white;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto;
+        }
+
+        .search-bar input {
+            width: 50%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background: #ff5a5f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .search-bar button:hover {
+            background: #ff3c4d;
         }
     </style>
 </head>
 <body>
-    <div class="header">Analytics</div>
-    <div class="content">
-        <h1>Analytics Dashboard</h1>
-        <p>Analyze the performance of your campaigns here.</p>
+    <div class="header">Find Influencers</div>
+
+    <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="brand-campaigns.html">Campaigns</a>
+    </div>
+
+    <div class="section-title">Search and Discover</div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search influencers by name, niche, or location...">
+        <button>Search</button>
+    </div>
+
+    <div class="dashboard">
+        <!-- Influencer 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200" alt="Influencer 1">
+            <div class="card-content">
+                <h3>Influencer A</h3>
+                <p class="stats">Followers: 200K | Engagement: 8.5%</p>
+                <a href="#">View Profile</a>
+            </div>
+        </div>
+
+        <!-- Influencer 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200" alt="Influencer 2">
+            <div class="card-content">
+                <h3>Influencer B</h3>
+                <p class="stats">Followers: 150K | Engagement: 7.2%</p>
+                <a href="#">View Profile</a>
+            </div>
+        </div>
+
+        <!-- Influencer 3 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200" alt="Influencer 3">
+            <div class="card-content">
+                <h3>Influencer C</h3>
+                <p class="stats">Followers: 300K | Engagement: 9%</p>
+                <a href="#">View Profile</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

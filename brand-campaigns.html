@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,28 +7,195 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #fcfbf7;
+            background-color: #fdfdfd;
             margin: 0;
             padding: 0;
         }
+
         .header {
             text-align: center;
             padding: 20px;
             background: #ff5a5f;
             color: white;
-            font-size: 26px;
+            font-size: 28px;
+            font-weight: bold;
         }
-        .content {
-            margin: 30px auto;
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 10%;
+            background: #ff7e7e;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #ff5a5f;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: #ff3c4d;
+        }
+
+        .section-title {
             text-align: center;
+            margin: 40px 0 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 10%;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            color: #ff5a5f;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .stats {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .card a {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 15px;
+            width: 80%;
+            text-align: center;
+            background: #ff5a5f;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .card a:hover {
+            background: #ff3c4d;
+        }
+
+        .chart {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="header">Brand Campaigns</div>
-    <div class="content">
-        <h1>Manage Campaigns</h1>
-        <p>View and manage all your brand campaigns here.</p>
+
+    <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="create-campaign.html">Create Campaign</a>
     </div>
+
+    <div class="section-title">Manage Your Campaigns</div>
+
+    <div class="dashboard">
+        <!-- Campaign 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200" alt="Campaign 1">
+            <div class="card-content">
+                <h3>Active Campaign</h3>
+                <p class="stats">Reach: 500K | Engagement: 12%</p>
+                <a href="campaign-details.html">View Details</a>
+            </div>
+        </div>
+
+        <!-- Campaign 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200" alt="Campaign 2">
+            <div class="card-content">
+                <h3>Completed Campaign</h3>
+                <p class="stats">Reach: 700K | Engagement: 15%</p>
+                <a href="campaign-details.html">View Details</a>
+            </div>
+        </div>
+
+        <!-- Campaign 3 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200" alt="Campaign 3">
+            <div class="card-content">
+                <h3>Upcoming Campaign</h3>
+                <p class="stats">Expected Reach: 600K</p>
+                <a href="campaign-details.html">View Details</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Campaign Performance</div>
+
+    <div class="chart">
+        <canvas id="performanceChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Campaign 1', 'Campaign 2', 'Campaign 3'],
+                datasets: [{
+                    label: 'Engagement (%)',
+                    data: [12, 15, 8],
+                    backgroundColor: ['#ff5a5f', '#ff7e7e', '#ff3c4d'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                },
+            },
+        });
+    </script>
 </body>
 </html>

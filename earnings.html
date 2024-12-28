@@ -1,35 +1,200 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earnings</title>
+    <title>Earnings Dashboard</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #fcfbf7;
+            background-color: #fdfdfd;
             margin: 0;
             padding: 0;
         }
+
         .header {
             text-align: center;
             padding: 20px;
             background: #ff5a5f;
             color: white;
-            font-size: 26px;
+            font-size: 28px;
+            font-weight: bold;
         }
-        .content {
-            margin: 30px auto;
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 10%;
+            background: #ff7e7e;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #ff5a5f;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: #ff3c4d;
+        }
+
+        .section-title {
             text-align: center;
+            margin: 40px 0 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 10%;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            color: #ff5a5f;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .stats {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .card a {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 15px;
+            width: 80%;
+            text-align: center;
+            background: #ff5a5f;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .card a:hover {
+            background: #ff3c4d;
+        }
+
+        .chart {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="header">Earnings</div>
-    <div class="content">
-        <h1>Earnings Overview</h1>
-        <p>Track your earnings and payouts here.</p>
+    <div class="header">Earnings Dashboard</div>
+
+    <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="explore.html">Explore Opportunities</a>
     </div>
+
+    <div class="section-title">Your Earnings</div>
+
+    <div class="dashboard">
+        <!-- Earnings Overview -->
+        <div class="card">
+            <div class="card-content">
+                <h3>Total Earnings</h3>
+                <p class="stats">$12,340.00</p>
+                <a href="#">View Breakdown</a>
+            </div>
+        </div>
+
+        <!-- Active Campaigns Earnings -->
+        <div class="card">
+            <div class="card-content">
+                <h3>Active Campaigns</h3>
+                <p class="stats">$4,500.00</p>
+                <a href="#">View Campaigns</a>
+            </div>
+        </div>
+
+        <!-- Pending Payouts -->
+        <div class="card">
+            <div class="card-content">
+                <h3>Pending Payouts</h3>
+                <p class="stats">$1,200.00</p>
+                <a href="#">View Details</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Earnings Trends</div>
+
+    <div class="chart">
+        <canvas id="earningsChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('earningsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                datasets: [{
+                    label: 'Earnings Over Time',
+                    data: [1200, 1900, 3000, 5000, 6300],
+                    borderColor: '#ff5a5f',
+                    backgroundColor: 'rgba(255, 90, 95, 0.2)',
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                },
+            },
+        });
+    </script>
 </body>
 </html>

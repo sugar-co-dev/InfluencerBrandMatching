@@ -29,6 +29,29 @@
         </select><br><br>
 
         <button type="submit">Create Campaign</button>
+    <form onsubmit="submitForm(event)" action="http://127.0.0.1:5000/campaigns" method="POST">
     </form>
+        <script>
+    async function submitForm(event) {
+        event.preventDefault();
+        const form = event.target;
+
+        const formData = new FormData(form);
+        const jsonData = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(jsonData),
+            });
+
+            const result = await response.json();
+            alert(`Campaign created successfully! Recommended Influencers: ${JSON.stringify(result.recommended_influencers)}`);
+        } catch (error) {
+            alert('Failed to create campaign. Please try again.');
+        }
+    }
+</script>
 </body>
 </html>

@@ -8,29 +8,19 @@
 <body>
     <h1>Create a New Campaign</h1>
 
-    <form action="http://127.0.0.1:5000/campaigns" method="POST">
-        <label for="campaign_name">Campaign Name:</label><br>
-        <input type="text" id="campaign_name" name="campaign_name" placeholder="Enter campaign name" required><br><br>
+    <form>
+    <input type="text" name="campaign_name" placeholder="Campaign Name" required>
+    <input type="number" name="budget" placeholder="Budget ($)" required>
+    <input type="number" name="duration" placeholder="Duration (days)" required>
+    <textarea name="audience" placeholder="Describe your target audience"></textarea>
+    <select name="goals">
+        <option value="brand-awareness">Brand Awareness</option>
+        <option value="sales">Product Sales</option>
+        <option value="engagement">Engagement</option>
+    </select>
+    <button type="submit">Create Campaign</button>
+</form>
 
-        <label for="budget">Budget ($):</label><br>
-        <input type="number" id="budget" name="budget" placeholder="Enter budget" required><br><br>
-
-        <label for="duration">Duration (Days):</label><br>
-        <input type="number" id="duration" name="duration" placeholder="Enter duration" required><br><br>
-
-        <label for="audience">Audience Preferences:</label><br>
-        <textarea id="audience" name="audience" rows="3" placeholder="Describe your target audience"></textarea><br><br>
-
-        <label for="goals">Campaign Goals:</label><br>
-        <select id="goals" name="goals" required>
-            <option value="brand-awareness">Brand Awareness</option>
-            <option value="sales">Product Sales</option>
-            <option value="engagement">Engagement</option>
-        </select><br><br>
-
-        <button type="submit">Create Campaign</button>
-    <form onsubmit="submitForm(event)" action="http://127.0.0.1:5000/campaigns" method="POST">
-    </form>
         <script>
     async function submitForm(event) {
         event.preventDefault();

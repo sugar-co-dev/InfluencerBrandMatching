@@ -160,38 +160,37 @@
         </div>
     </div>
 <script>
-    async function loadCampaigns() {
+    async function submitForm(event) {
+        event.preventDefault(); // Prevent the default form submission
+        const form = event.target;
+
+        // Collect form data
+        const formData = new FormData(form);
+        const jsonData = Object.fromEntries(formData.entries());
+
         try {
-            // Fetch campaigns from the backend
-            const response = await fetch('http://127.0.0.1:5000/campaigns');
-            const campaigns = await response.json();
-
-            // Get the container where campaigns will be displayed
-            const container = document.getElementById('campaigns-container');
-
-            // Loop through the campaigns and add them to the container
-            campaigns.forEach(campaign => {
-                const campaignElement = document.createElement('div');
-                campaignElement.style.border = "1px solid #ccc";
-                campaignElement.style.margin = "10px";
-                campaignElement.style.padding = "10px";
-                campaignElement.style.borderRadius = "5px";
-                campaignElement.innerHTML = `
-                    <h2>${campaign.name}</h2>
-                    <p>Budget: $${campaign.budget}</p>
-                    <p>Duration: ${campaign.duration} days</p>
-                    <p>Audience: ${campaign.audience || 'N/A'}</p>
-                    <p>Goals: ${campaign.goals}</p>
-                `;
-                container.appendChild(campaignElement);
+            // Send the data as JSON
+            const response = await fetch('http://127.0.0.1:5000/campaigns', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(jsonData),
             });
+
+            // Handle response
+            if (response.ok) {
+                const result = await response.json();
+                alert(`Campaign created successfully! Recommended Influencers: ${JSON.stringify(result.recommended_influencers)}`);
+            } else {
+                alert(`Error: ${response.statusText}`);
+            }
         } catch (error) {
-            console.error('Error loading campaigns:', error);
+            alert('Failed to create campaign. Please try again.');
+            console.error(error);
         }
     }
 
-    // Call loadCampaigns when the page loads
-    document.addEventListener('DOMContentLoaded', loadCampaigns);
+    // Attach the handler to the form
+    document.querySelector('form').addEventListener('submit', submitForm);
 </script>
 </body>
 </html>

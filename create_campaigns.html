@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Campaign</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fdfdfd;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: #ff5a5f;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-section label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-section input, .form-section textarea, .form-section select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-section button {
+            background: #ff5a5f;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-section button:hover {
+            background: #ff3c4d;
+        }
+
+        .recommended-section {
+            margin-top: 30px;
+        }
+
+        .recommended-header {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .recommendation {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .recommendation h4 {
+            margin: 0;
+        }
+
+        .recommendation button {
+            background: #ff5a5f;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .recommendation button:hover {
+            background: #ff3c4d;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Create a New Campaign</div>
+
+    <div class="container">
+        <!-- Campaign Form -->
+        <form action="/create-campaign" method="POST">
+            <div class="form-section">
+                <label for="campaign-name">Campaign Name</label>
+                <input type="text" id="campaign-name" name="campaign_name" placeholder="Enter campaign name" required>
+            </div>
+
+            <div class="form-section">
+                <label for="budget">Budget ($)</label>
+                <input type="number" id="budget" name="budget" placeholder="Enter campaign budget" required>
+            </div>
+
+            <div class="form-section">
+                <label for="duration">Duration (days)</label>
+                <input type="number" id="duration" name="duration" placeholder="Enter campaign duration" required>
+            </div>
+
+            <div class="form-section">
+                <label for="audience">Audience Preferences</label>
+                <textarea id="audience" name="audience" rows="3" placeholder="Describe your target audience"></textarea>
+            </div>
+
+            <div class="form-section">
+                <label for="goals">Campaign Goals</label>
+                <select id="goals" name="goals" required>
+                    <option value="brand-awareness">Brand Awareness</option>
+                    <option value="sales">Product Sales</option>
+                    <option value="engagement">Engagement</option>
+                </select>
+            </div>
+
+            <div class="form-section">
+                <button type="submit">Create Campaign</button>
+            </div>
+        </form>
+
+        <!-- Recommended Influencers Section -->
+        <div class="recommended-section">
+            <div class="recommended-header">Recommended Influencers</div>
+
+            <div class="recommendation">
+                <h4>Influencer A</h4>
+                <button>Select</button>
+            </div>
+
+            <div class="recommendation">
+                <h4>Influencer B</h4>
+                <button>Select</button>
+            </div>
+
+            <div class="recommendation">
+                <h4>Influencer C</h4>
+                <button>Select</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

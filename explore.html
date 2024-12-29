@@ -159,5 +159,39 @@
             </div>
         </div>
     </div>
+<script>
+    async function loadCampaigns() {
+        try {
+            // Fetch campaigns from the backend
+            const response = await fetch('http://127.0.0.1:5000/campaigns');
+            const campaigns = await response.json();
+
+            // Get the container where campaigns will be displayed
+            const container = document.getElementById('campaigns-container');
+
+            // Loop through the campaigns and add them to the container
+            campaigns.forEach(campaign => {
+                const campaignElement = document.createElement('div');
+                campaignElement.style.border = "1px solid #ccc";
+                campaignElement.style.margin = "10px";
+                campaignElement.style.padding = "10px";
+                campaignElement.style.borderRadius = "5px";
+                campaignElement.innerHTML = `
+                    <h2>${campaign.name}</h2>
+                    <p>Budget: $${campaign.budget}</p>
+                    <p>Duration: ${campaign.duration} days</p>
+                    <p>Audience: ${campaign.audience || 'N/A'}</p>
+                    <p>Goals: ${campaign.goals}</p>
+                `;
+                container.appendChild(campaignElement);
+            });
+        } catch (error) {
+            console.error('Error loading campaigns:', error);
+        }
+    }
+
+    // Call loadCampaigns when the page loads
+    document.addEventListener('DOMContentLoaded', loadCampaigns);
+</script>
 </body>
 </html>
